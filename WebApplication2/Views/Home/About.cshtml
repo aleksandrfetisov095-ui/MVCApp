@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "О себе";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.Title</h1>
+
+    <div class="card shadow-sm" style="max-width: 600px; margin: 30px auto; padding: 25px;">
+        <h4 class="mb-4">Личная информация</h4>
+        <hr />
+        <div class="text-start">
+            <p><strong>ФИО:</strong> @ViewBag.FullName</p>
+            <p><strong>Возраст:</strong> @ViewBag.Age лет</p>
+            <p><strong>Email:</strong> @ViewBag.Email</p>
+            <p><strong>Телефон:</strong> @ViewBag.Phone</p>
+            <p><strong>О себе:</strong> @ViewBag.Bio</p>
+        </div>
+    </div>
+</div>
