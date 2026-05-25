@@ -1,14 +1,15 @@
 ﻿using ex2.Models;
-namespace ex2.Repositories
+using ex2.Repositories.Interfaces;
 
+namespace ex2.Repositories;
+
+public class TextbookRepository : ITextbookRepository
 {
-    public class TextbookRepository
-    {
-        private List<Textbook> _textbooks;
+    private readonly List<Textbook> _textbooks;
 
-        public TextbookRepository()
-        {
-            _textbooks = new List<Textbook>
+    public TextbookRepository()
+    {
+        _textbooks = new List<Textbook>
         {
             new()
             {
@@ -59,16 +60,15 @@ namespace ex2.Repositories
                 CoverUrl = "https://www.moscowbooks.ru/image/book/803/w259/i803458.jpg?cu=20240131174507"
             }
         };
-        }
+    }
 
-        public List<Textbook> Get()
-        {
-            return _textbooks;
-        }
+    public List<Textbook> Get()
+    {
+        return _textbooks;
+    }
 
-        public Textbook GetById(int id)
-        {
-            return _textbooks.First(x => x.Id == id);
-        }
+    public Textbook GetById(int id)
+    {
+        return _textbooks.First(x => x.Id == id);
     }
 }

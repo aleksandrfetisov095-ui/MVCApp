@@ -1,15 +1,15 @@
-using ex2.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using ex2.Repositories.Interfaces;
 
 namespace ex2.Controllers;
 
 public class TextbooksController : Controller
 {
-    private readonly TextbookRepository _repository;
+    private readonly ITextbookRepository _repository;
 
-    public TextbooksController()
+    public TextbooksController(ITextbookRepository repository)
     {
-        _repository = new TextbookRepository();
+        _repository = repository;
     }
 
     public IActionResult Index()
