@@ -1,0 +1,39 @@
+﻿@model List<ex3.Models.Cat>
+@{
+    ViewData["Title"] = "Контакты";
+}
+
+<!-- Контактная информация -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Свяжитесь с нами</h4>
+    </div>
+    <div class="card-body">
+        <p><strong> Адрес:</strong> г. Москва, ул. Тестовая, д. 1</p>
+        <p><strong> Email:</strong> admin@ex3.ru</p>
+        <p><strong> Телефон:</strong> +7 (999) 000-00-00</p>
+        <p><strong> Режим работы:</strong> Пн-Вс, 10:00 - 20:00</p>
+    </div>
+</div>
+
+<!-- Коты, которых можно забрать -->
+<h4 class="mb-3">🐱 Коты, которые ждут вас:</h4>
+<div class="row">
+    @foreach (var cat in ViewBag.Cats)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="@cat.PhotoSrc" class="card-img-top" alt="@cat.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@cat.Name</h5>
+                    <p class="card-text text-muted">@cat.Description</p>
+                    <p class="card-text"><small>Возраст: @cat.Age лет</small></p>
+
+                    <a href="tel:+79990000000" class="btn btn-success w-100">
+                         Забрать @cat.Name
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
