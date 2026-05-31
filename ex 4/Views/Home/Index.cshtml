@@ -1,0 +1,19 @@
+﻿@model ex_4.Models.Car
+@{
+    ViewData["Title"] = Model.Model;
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Model">
+    </div>
+    <div class="col-md-6">
+        <h1>@Model.Brand?.Name @Model.Model</h1>
+        <p><strong> Год:</strong> @Model.Year</p>
+        <p><strong> Цена:</strong> <span class="text-success fs-4">@Model.Price.ToString("C")</span></p>
+        <p><strong> Производитель:</strong> @Model.Brand?.Name (@Model.Brand?.Country)</p>
+        <p><strong> Описание:</strong> @Model.Description</p>
+        <a asp-action="Index" class="btn btn-secondary">← Назад</a>
+        <a href="tel:+79990000000" class="btn btn-success ms-2"> Купить</a>
+    </div>
+</div>
