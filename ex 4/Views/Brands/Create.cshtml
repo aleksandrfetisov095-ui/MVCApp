@@ -1,0 +1,41 @@
+﻿@model ex_4.Models.Brand
+@{
+    ViewData["Title"] = "Добавить бренд";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">🚗 Добавить новый бренд</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Название бренда *</label>
+                        <input asp-for="Name" class="form-control" placeholder="Например: Mercedes, Audi, Ford">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Country" class="form-label">Страна производителя</label>
+                        <input asp-for="Country" class="form-control" placeholder="Например: Germany, USA, Japan">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">💾 Сохранить бренд</button>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">↩️ Отмена</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

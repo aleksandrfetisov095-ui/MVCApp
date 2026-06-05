@@ -6,4 +6,6 @@ public interface ICarRepository
 {
     Task<List<Car>> GetAllAsync();
     Task<Car?> GetByIdAsync(int id);
+    Task<List<Brand>> GetAllBrandsAsync();
+    Task AddBrandAsync(Brand brand);
 }

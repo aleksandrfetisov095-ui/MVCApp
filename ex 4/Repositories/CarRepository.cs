@@ -16,4 +16,13 @@ public class CarRepository : ICarRepository
 
     public async Task<Car?> GetByIdAsync(int id) =>
         await _context.Cars.Include(c => c.Brand).FirstOrDefaultAsync(c => c.Id == id);
+
+    public async Task<List<Brand>> GetAllBrandsAsync() =>
+        await _context.Brands.ToListAsync();
+
+    public async Task AddBrandAsync(Brand brand)
+    {
+        await _context.Brands.AddAsync(brand);
+        await _context.SaveChangesAsync();
+    }
 }
