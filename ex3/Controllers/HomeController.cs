@@ -12,22 +12,23 @@ namespace ex3.Controllers
             _catRepository = catRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var cats = _catRepository.Get();
+            var cats = await _catRepository.GetAllAsync();
             return View(cats);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var cat = _catRepository.GetById(id);
+            var cat = await _catRepository.GetByIdAsync(id);
+            if (cat == null) return NotFound();
             return View(cat);
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
             ViewData["Title"] = "Контакты";
-            ViewBag.Cats = _catRepository.Get();
+            ViewBag.Cats = await _catRepository.GetAllAsync();
             return View();
         }
     }
