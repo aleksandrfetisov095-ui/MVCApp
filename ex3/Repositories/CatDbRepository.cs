@@ -13,6 +13,17 @@ public class CatRepository : ICatRepository
     {
         _context = context;
     }
+    public async Task<List<Cat>> GetFilteredAsync(string? searchName)
+    {
+        var query = _context.Cats.Include(c => c.Breed).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(searchName))
+        {
+            query = query.Where(c => c.Name.Contains(searchName));
+        }
+
+        return await query.ToListAsync();
+    }
 
     public async Task<List<Cat>> GetAllAsync() =>
         await _context.Cats.Include(c => c.Breed).ToListAsync();

@@ -10,7 +10,7 @@
                 <h4 class="mb-0"> Добавить нового кота</h4>
             </div>
             <div class="card-body">
-                <form asp-action="Create" method="post">
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
@@ -32,9 +32,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="PhotoSrc" class="form-label"></label>
-                        <input asp-for="PhotoSrc" class="form-control" placeholder="https://example.com/cat.jpg">
-                        <span asp-validation-for="PhotoSrc" class="text-danger fw-bold"></span>
+                        <label asp-for="PhotoFile" class="form-label">Загрузить фото</label>
+                        <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*">
+                        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                        <small class="form-text text-muted">Поддерживаются: JPG, PNG, GIF (макс. 5 МБ)</small>
                     </div>
 
                     <div class="mb-3">

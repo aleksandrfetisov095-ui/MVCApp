@@ -23,7 +23,6 @@ public class Cat
 
     [Required(ErrorMessage = "—сылка на фото об€зательна")]
     [StringLength(500, ErrorMessage = "—сылка не должна превышать 500 символов")]
-    [Url(ErrorMessage = "¬ведите корректный URL")]
     [Display(Name = "—сылка на фото")]
     public required string PhotoSrc { get; set; }
 

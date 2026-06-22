@@ -10,7 +10,7 @@
                 <h4 class="mb-0">✏️ Редактировать кота</h4>
             </div>
             <div class="card-body">
-                <form asp-action="Edit" method="post">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="Id" />
 
                     <div class="mb-3">
@@ -33,10 +33,21 @@
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="PhotoSrc" class="form-label"></label>
-                        <input asp-for="PhotoSrc" class="form-control" placeholder="https://media.istockphoto.com/id/1443562748/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%B8%D0%BB%D0%B0%D1%8F-%D1%80%D1%8B%D0%B6%D0%B0%D1%8F-%D0%BA%D0%BE%D1%88%D0%BA%D0%B0.jpg?s=612x612&w=0&k=20&c=k8RwP4usK_LCpQ1bPn3fNDLk3vtfptH7CEcEMZw_K1A=">
-                        <span asp-validation-for="PhotoSrc" class="text-danger fw-bold"></span>
+                        <label asp-for="PhotoFile" class="form-label">📷 Загрузить новое фото</label>
+                        <input asp-for="PhotoFile" type="file" class="form-control" accept="image/*">
+                        <span asp-validation-for="PhotoFile" class="text-danger fw-bold"></span>
+                        <small class="form-text text-muted">Оставь пустым, чтобы сохранить текущее фото</small>
                     </div>
+
+                    @if (!string.IsNullOrEmpty(Model.CurrentPhotoUrl))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">Текущее фото:</label><br>
+                            <img src="@Model.CurrentPhotoUrl" alt="@Model.Name"
+                                 style="max-width: 200px; border-radius: 8px;"
+                                 onerror="this.src='https://via.placeholder.com/200x150?text=No+Photo'">
+                        </div>
+                    }
 
                     <div class="mb-3">
                         <label asp-for="BreedId" class="form-label"></label>
@@ -48,7 +59,7 @@
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a asp-action="Index" class="btn btn-secondary">↩️ Отмена</a>
-                        <button type="submit" class="btn btn-primary">💾 Сохранить изменения</button>
+                        <button type="submit" class="btn btn-primary"> Сохранить изменения</button>
                     </div>
 
                 </form>

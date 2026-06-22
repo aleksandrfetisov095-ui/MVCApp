@@ -8,6 +8,8 @@ public interface ICatRepository
     Task<Cat?> GetByIdAsync(int id);
     Task<List<Breed>> GetAllBreedsAsync();
 
+    Task<List<Cat>> GetFilteredAsync(string? searchName);
+
     Task AddCatAsync(Cat cat);
     Task UpdateCatAsync(Cat cat);
     Task DeleteCatAsync(int id);
