@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ex3.Models.Breed>
+
+<select class="form-select" name="BreedId">
+    <option value="">-- Выберите породу --</option>
+    @foreach (var breed in Model)
+    {
+        <option value="@breed.Id">@breed.Name</option>
+    }
+</select>

@@ -18,7 +18,7 @@
 @if (Model == null || Model.Count == 0)
 {
     <div class="alert alert-info text-center">
-        😿 Коты не найдены. <a asp-action="Create">Добавить первого кота?</a>
+         Коты не найдены. <a asp-action="Create">Добавить первого кота?</a>
     </div>
 }
 else
@@ -28,11 +28,9 @@ else
         {
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="@cat.PhotoSrc"
-                         class="card-img-top"
-                         alt="@cat.Name"
-                         style="height: 200px; object-fit: cover;"
-                         onerror="this.src='https://via.placeholder.com/300x200?text=No+Photo'">
+                    <div class="card-img-top">
+                        @await Component.InvokeAsync("CatPhoto", new { cat = cat })
+                    </div>
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">@cat.Name</h5>
@@ -42,7 +40,7 @@ else
                             <p class="card-text text-muted small">🐾 @cat.Breed.Name</p>
                         }
 
-                        <p class="card-text text-muted">🎂 @cat.Age лет</p>
+                        <p class="card-text text-muted"> @cat.Age лет</p>
                         <p class="card-text flex-grow-1">@cat.Description</p>
 
                         <div class="mt-auto d-flex gap-2">
@@ -56,35 +54,7 @@ else
     </div>
 }
 
-@if (ViewBag.TotalPages > 1)
-{
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-
-            <li class="page-item @(ViewBag.CurrentPage <= 1 ? "disabled" : "")">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-searchName="@ViewBag.SearchName"
-                   asp-route-page="@(ViewBag.CurrentPage - 1)">← Назад</a>
-            </li>
-
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
-            {
-                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                    <a class="page-link"
-                       asp-action="Index"
-                       asp-route-searchName="@ViewBag.SearchName"
-                       asp-route-page="@i">@i</a>
-                </li>
-            }
-
-            <li class="page-item @(ViewBag.CurrentPage >= ViewBag.TotalPages ? "disabled" : "")">
-                <a class="page-link"
-                   asp-action="Index"
-                   asp-route-searchName="@ViewBag.SearchName"
-                   asp-route-page="@(ViewBag.CurrentPage + 1)">Вперёд →</a>
-            </li>
-
-        </ul>
-    </nav>
-}
+@await Component.InvokeAsync("Pagination", new {
+    currentPage = ViewBag.CurrentPage,
+    totalPages = ViewBag.TotalPages
+})

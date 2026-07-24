@@ -40,9 +40,7 @@
 
                     <div class="mb-3">
                         <label asp-for="BreedId" class="form-label"></label>
-                        <select asp-for="BreedId" class="form-select" asp-items="ViewBag.Brands">
-                            <option value="">-- Выберите породу --</option>
-                        </select>
+                        @await Component.InvokeAsync("CategoryMenu")
                         <span asp-validation-for="BreedId" class="text-danger fw-bold"></span>
                     </div>
 

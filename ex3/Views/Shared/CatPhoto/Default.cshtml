@@ -1,0 +1,17 @@
+﻿@model ex3.Models.Cat
+
+@if (!string.IsNullOrEmpty(Model.PhotoSrc))
+{
+    <img src="@Model.PhotoSrc"
+         alt="@Model.Name"
+         class="img-fluid rounded"
+         style="max-width: 100%; height: auto;"
+         onerror="this.src='https://via.placeholder.com/300x200?text=No+Photo'">
+}
+else
+{
+    <img src="https://via.placeholder.com/300x200?text=No+Photo"
+         alt="No Photo"
+         class="img-fluid rounded"
+         style="max-width: 100%; height: auto;">
+}
